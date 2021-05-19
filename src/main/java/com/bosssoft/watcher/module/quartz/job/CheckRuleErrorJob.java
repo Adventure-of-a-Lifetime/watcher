@@ -8,6 +8,7 @@ import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.annotation.Order;
 
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
@@ -15,6 +16,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
+@Order
 public class CheckRuleErrorJob implements Job {
 
     private static final Logger logger = LoggerFactory.getLogger(CheckRuleErrorJob.class);

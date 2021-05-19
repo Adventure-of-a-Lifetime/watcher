@@ -19,7 +19,7 @@ public class ObserverConfigure implements CommandLineRunner {
     private ProvinceRuleObserved observed;
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         for(RuleInject observer : observers) {
             observed.addObserver((PropertyChangeListener) observer);
         }

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.RecursiveTask;
 
@@ -21,7 +20,7 @@ public class CheckDataForkJoin extends RecursiveTask<List<ErrorDataPO>> {
     @Resource
     private RuleAdministrationDAO ruleAdministrationDAO;
 
-    private List<String> list;
+    private final List<String> list;
 
     private final int cpu = Runtime.getRuntime().availableProcessors();
 
@@ -32,7 +31,7 @@ public class CheckDataForkJoin extends RecursiveTask<List<ErrorDataPO>> {
     @Override
     protected List<ErrorDataPO> compute() {
         List<ErrorDataPO> errorDataPOList = new ArrayList<>();
-        if (errorDataPOList.size() > cpu) {
+        if (list.size() > cpu) {
             CheckDataForkJoin checkOne = new CheckDataForkJoin(list.subList(0, list.size() / 2));
             CheckDataForkJoin checkTwo = new CheckDataForkJoin(list.subList(list.size() / 2, list.size()));
 
